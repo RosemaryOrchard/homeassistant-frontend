@@ -46,9 +46,10 @@ class SearchInputOutlined extends LitElement {
     return html`
       <ha-outlined-text-field
         .autofocus=${this.autofocus}
-        .aria-label=${this.label || this.hass.localize("ui.common.search")}
+        .ariaLabel=${this.label || this.hass.localize("ui.common.search")}
         .placeholder=${placeholder}
         .value=${this.filter || ""}
+        .role=${"searchbox"}
         icon
         .iconTrailing=${this.filter || this.suffix}
         @input=${this._filterInputChanged}

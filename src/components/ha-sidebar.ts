@@ -360,7 +360,8 @@ class HaSidebar extends SubscribeMixin(LitElement) {
 
   private _renderHeader() {
     return html`<div
-      class="menu"
+      class="navigation"
+      role="menu"
       @action=${this._handleAction}
       .actionHandler=${actionHandler({
         hasHold: !this.editMode,
@@ -448,7 +449,7 @@ class HaSidebar extends SubscribeMixin(LitElement) {
       ? this._renderConfiguration(title)
       : html`
           <a
-            role="option"
+            role="menuitem"
             href=${`/${urlPath}`}
             data-panel=${urlPath}
             tabindex="-1"
@@ -563,7 +564,7 @@ class HaSidebar extends SubscribeMixin(LitElement) {
   private _renderConfiguration(title: string | null) {
     return html`<a
       class="configuration-container"
-      role="option"
+      role="menuitem"
       href="/config"
       data-panel="config"
       tabindex="-1"
@@ -604,7 +605,7 @@ class HaSidebar extends SubscribeMixin(LitElement) {
     >
       <paper-icon-item
         class="notifications"
-        role="option"
+        role="menuitem"
         @click=${this._handleShowNotificationDrawer}
       >
         <ha-svg-icon slot="item-icon" .path=${mdiBell}></ha-svg-icon>
@@ -635,7 +636,7 @@ class HaSidebar extends SubscribeMixin(LitElement) {
       href="/profile"
       data-panel="panel"
       tabindex="-1"
-      role="option"
+      role="menuitem"
       aria-label=${this.hass.localize("panel.profile")}
       @mouseenter=${this._itemMouseEnter}
       @mouseleave=${this._itemMouseLeave}
@@ -659,7 +660,7 @@ class HaSidebar extends SubscribeMixin(LitElement) {
     this.hass.auth.external?.config.hasSettingsScreen
       ? html`
           <a
-            role="option"
+            role="menuitem"
             aria-label=${this.hass.localize(
               "ui.sidebar.external_app_configuration"
             )}

@@ -25,6 +25,7 @@ class SupervisorMetric extends LitElement {
             "target-critical": roundedValue > 85,
           })}
           .value=${this.value}
+          .title_label=${this.tooltip ?? this.description}
         ></ha-bar>
       </div>
     </ha-settings-row>`;

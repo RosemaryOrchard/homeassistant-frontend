@@ -9,6 +9,11 @@ export class HaCircularProgress extends MdCircularProgress {
 
   @property() public size: "tiny" | "small" | "medium" | "large" = "medium";
 
+  protected firstUpdated(changedProperties: PropertyValues): void {
+    super.firstUpdated(changedProperties);
+    this.setAttribute("role", "progressbar");
+  }
+
   protected updated(changedProps: PropertyValues) {
     super.updated(changedProps);
 

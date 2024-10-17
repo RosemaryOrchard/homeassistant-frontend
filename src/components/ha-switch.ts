@@ -13,6 +13,7 @@ export class HaSwitch extends SwitchBase {
 
   protected firstUpdated() {
     super.firstUpdated();
+    this.setAttribute("role", "switch");
     this.addEventListener("change", () => {
       if (this.haptic) {
         forwardHaptic("light");

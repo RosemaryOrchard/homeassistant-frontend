@@ -50,6 +50,7 @@ export class DemoHaBar extends LitElement {
                     warning: bar.value > bar.warning,
                     error: bar.value > bar.error,
                   })}
+                  .title_label=${"Sample Bar"}
                   .min=${bar.min}
                   .max=${bar.max}
                   .value=${bar.value}

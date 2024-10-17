@@ -43,6 +43,7 @@ export class HaDialog extends DialogBase {
       SUPPRESS_DEFAULT_PRESS_SELECTOR,
     ].join(", ");
     this._updateScrolledAttribute();
+    this.setAttribute("role", "dialog");
     this.contentElement?.addEventListener("scroll", this._onScroll, {
       passive: true,
     });

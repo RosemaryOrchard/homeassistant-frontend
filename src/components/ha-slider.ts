@@ -7,6 +7,7 @@ import { mainWindow } from "../common/dom/get_main_window";
 export class HaSlider extends MdSlider {
   public connectedCallback() {
     super.connectedCallback();
+    this.setAttribute("role", "slider");
     this.dir = mainWindow.document.dir;
   }
 

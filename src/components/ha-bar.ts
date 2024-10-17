@@ -1,4 +1,4 @@
-import { css, CSSResultGroup, LitElement, svg, TemplateResult } from "lit";
+import { css, CSSResultGroup, html, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators";
 import {
   getValueInPercentage,
@@ -14,8 +14,10 @@ export class HaBar extends LitElement {
 
   @property({ type: Number }) public value!: number;
 
+  @property({ type: String }) public title_label!: string;
+
   protected render(): TemplateResult {
-    const valuePrecentage = roundWithOneDecimal(
+    const valuePercentage = roundWithOneDecimal(
       getValueInPercentage(
         normalize(this.value, this.min, this.max),
         this.min,
@@ -23,13 +25,19 @@ export class HaBar extends LitElement {
       )
     );
 
-    return svg`
-      <svg>
-        <g>
-          <rect/>
-          <rect width="${valuePrecentage}%"/>
-        </g>
-      </svg>
+    return html`
+      <div
+        role="meter"
+        aria-valuenow="${valuePercentage}%"
+        aria-label=${this.title_label}
+      >
+        <svg>
+          <g>
+            <rect />
+            <rect width="${valuePercentage}%" />
+          </g>
+        </svg>
+      </div>
     `;
   }
 

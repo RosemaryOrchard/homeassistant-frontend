@@ -27,6 +27,7 @@ class HaMetric extends LitElement {
               "target-warning": roundedValue > 50,
               "target-critical": roundedValue > 85,
             })}
+            .title_label=${this.tooltip ?? this.heading}
             .value=${this.value}
           ></ha-bar>
         </div>

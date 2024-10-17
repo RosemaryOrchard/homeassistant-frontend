@@ -15,6 +15,7 @@ import "./ha-icon";
 
 type IconItem = {
   icon: string;
+  name: string;
   parts: Set<string>;
   keywords: string[];
 };
@@ -33,6 +34,7 @@ const loadIcons = async () => {
   const iconList = await import("../../build/mdi/iconList.json");
   ICONS = iconList.default.map((icon) => ({
     icon: `mdi:${icon.name}`,
+    name: icon.name,
     parts: new Set(icon.name.split("-")),
     keywords: icon.keywords,
   }));
@@ -55,6 +57,7 @@ const loadCustomIconItems = async (iconsetPrefix: string) => {
     const iconList = await getIconList();
     const customIconItems = iconList.map((icon) => ({
       icon: `${iconsetPrefix}:${icon.name}`,
+      name: icon.name,
       parts: new Set(icon.name.split("-")),
       keywords: icon.keywords ?? [],
     }));
@@ -67,7 +70,12 @@ const loadCustomIconItems = async (iconsetPrefix: string) => {
 };
 
 const rowRenderer: ComboBoxLitRenderer<IconItem | RankedIcon> = (item) =>
-  html`<ha-list-item graphic="avatar">
+  html`<ha-list-item
+    role="option"
+    .ariaLabel=${item.icon}
+    aria-selected="false"
+    graphic="avatar"
+  >
     <ha-icon .icon=${item.icon} slot="graphic"></ha-icon>
     ${item.icon}
   </ha-list-item>`;
@@ -115,7 +123,13 @@ export class HaIconPicker extends LitElement {
       >
         ${this._value || this.placeholder
           ? html`
-              <ha-icon .icon=${this._value || this.placeholder} slot="icon">
+              <ha-icon
+                role="option"
+                aria-selected="false"
+                .ariaLabel=${this._value || this.placeholder}
+                .icon=${this._value || this.placeholder}
+                slot="icon"
+              >
               </ha-icon>
             `
           : html`<slot slot="icon" name="fallback"></slot>`}
